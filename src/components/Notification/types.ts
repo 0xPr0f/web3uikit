@@ -21,7 +21,10 @@ export interface NotificationProps extends INotificationStyled {
      * import { iconTypes } from "../../components/Icon/collection"
      */
     icon?: TIconType;
-
+    /**
+     * how long the displayed notification last
+     */
+    duration?: number;
     /**
      * set color of the icon
      */
@@ -70,6 +73,7 @@ export type PayloadType = {
     title?: string;
     icon?: TIconType;
     position: IPosition;
+    duration?: number;
     iconColor?: string;
 };
 

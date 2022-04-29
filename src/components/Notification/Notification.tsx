@@ -23,14 +23,13 @@ const Notification: React.FC<NotificationProps> = ({
     message,
     title = 'New Message',
     type = 'info',
+    duration = 20,
     position = 'topL',
 }: NotificationProps) => {
     const [isClosing, setIsClosing] = useState(false);
     const [intervalId, setIntervalId] = useState<NodeJS.Timeout>();
     const [barWidth, setBarWidth] = useState(0);
-
     const notificationWidth = 320;
-
     const startTimer = () => {
         if (isClosing) return;
         const idInt = setInterval(() => {
@@ -40,7 +39,7 @@ const Notification: React.FC<NotificationProps> = ({
                 clearInterval(idInt);
                 return prev;
             });
-        }, 20);
+        }, duration);
 
         setIntervalId(idInt);
     };
@@ -105,9 +104,10 @@ const Notification: React.FC<NotificationProps> = ({
                 >
                     <Icon size={24} svg={iconTypes.x} fill={color.greyIcons} />
                 </CloseWrapperStyled>
-                <SpanStyled data-testid={'test-notification-message'}>
-                    {message}
-                </SpanStyled>
+                <SpanStyled
+                    dangerouslySetInnerHTML={{ __html: message! }}
+                    data-testid={'test-notification-message'}
+                ></SpanStyled>
             </TextContentStyled>
             <BarStyled style={{ width: barWidth }} />
         </NotificationStyled>

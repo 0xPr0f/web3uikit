@@ -35,6 +35,7 @@ const HookTemplate: ComponentStory<typeof Notification> = () => {
             message: 'Somebody messaged you',
             title: 'New Notification',
             icon,
+            duration: 20,
             position: position || 'topR',
         });
     };
@@ -140,4 +141,11 @@ CustomIcon.args = {
     icon: iconTypes.cloud,
     message: 'TX: 0x2134...e82c5',
     title: 'New Event Sync',
+};
+export const CustomHTMLTags = Template.bind({});
+CustomHTMLTags.args = {
+    type: 'success',
+    message:
+        '<a target="_blank" href="https://etherscan.io/tx/0xfb06b6e0af6935b3cedd13f0dd62d94e0586c713f4ebead90f47a3ef15395769" >Transaction hash on ETH mainnet</a>',
+    title: 'TX successful',
 };
